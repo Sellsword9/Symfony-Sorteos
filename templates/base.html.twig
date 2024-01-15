@@ -17,12 +17,17 @@
 
     {% if app.user %}
         Hola {{app.user.username}}
+        Money: {{app.user.money}}
+
         <a href="/logout">Logout</a>
     {% else %}
         <a href="/login">Login</a>
     {% endif %}
 
-    Money: {{app.user.money}}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="">Administración</a>
+    {% endif %}
+
     
         {% block body %}{% endblock %}
     </body>

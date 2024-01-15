@@ -34,18 +34,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Ticket::class)]
     private Collection $tickets;
 
-    #[ORM\Column(options: ["default" => 0])]
+    #[ORM\Column]
     private ?float $money = null;
 
-    #[ORM\Column(options: ["default" => 0])]
+    #[ORM\Column]
     private ?float $balance = null;
 
-    #[ORM\Column(options: ["default" => 0])]
+    #[ORM\Column]
     private ?int $wins = null;
 
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
+        $this->money = 0;
+        $this->balance = 0;
+        $this->wins = 0;
     }
 
     public function getId(): ?int
