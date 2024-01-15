@@ -12,6 +12,18 @@
         {% endblock %}
     </head>
     <body>
+
+    <h1>Mi juego de cartas</h1>
+
+    {% if app.user %}
+        Hola {{app.user.username}}
+        <a href="/logout">Logout</a>
+    {% else %}
+        <a href="/login">Login</a>
+    {% endif %}
+
+    Money: {{app.user.money}}
+    
         {% block body %}{% endblock %}
     </body>
 </html>
