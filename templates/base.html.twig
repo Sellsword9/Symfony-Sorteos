@@ -16,12 +16,12 @@
     <h1>Mi juego de cartas</h1>
 
     {% if app.user %}
-        Hola {{app.user.username}}
-        Money: {{app.user.money}}
+        Hola {{app.user.username}}<br>
+        Money: {{app.user.money}}<br>
 
-        <a href="/logout">Logout</a>
+        <a href="/logout">Logout</a><br>
     {% else %}
-        <a href="/login">Login</a>
+        <a href="/login">Login</a><br>
     {% endif %}
 
     {% if is_granted('ROLE_ADMIN') %}
