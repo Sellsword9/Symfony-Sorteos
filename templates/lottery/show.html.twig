@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lottery{% endblock %}
+
+{% block body %}
+    <h1>Lottery</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ lottery.id }}</td>
+            </tr>
+            <tr>
+                <th>CreateDateTime</th>
+                <td>{{ lottery.createDateTime ? lottery.createDateTime|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>EndDateTime</th>
+                <td>{{ lottery.endDateTime ? lottery.endDateTime|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ lottery.price }}</td>
+            </tr>
+            <tr>
+                <th>Prize</th>
+                <td>{{ lottery.prize }}</td>
+            </tr>
+            <tr>
+                <th>State</th>
+                <td>{{ lottery.state }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_lottery_index') }}">back to list</a>
+
+    <a href="{{ path('app_lottery_edit', {'id': lottery.id}) }}">edit</a>
+
+    {{ include('lottery/_delete_form.html.twig') }}
+{% endblock %}

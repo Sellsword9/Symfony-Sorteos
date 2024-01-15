@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lottery index{% endblock %}
+
+{% block body %}
+    <h1>Lottery index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CreateDateTime</th>
+                <th>EndDateTime</th>
+                <th>Price</th>
+                <th>Prize</th>
+                <th>State</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lottery in lotteries %}
+            <tr>
+                <td>{{ lottery.id }}</td>
+                <td>{{ lottery.createDateTime ? lottery.createDateTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ lottery.endDateTime ? lottery.endDateTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ lottery.price }}</td>
+                <td>{{ lottery.prize }}</td>
+                <td>{{ lottery.state }}</td>
+                <td>
+                    <a href="{{ path('app_lottery_show', {'id': lottery.id}) }}">show</a>
+                    <a href="{{ path('app_lottery_edit', {'id': lottery.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_lottery_new') }}">Create new</a>
+{% endblock %}

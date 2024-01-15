@@ -19,6 +19,9 @@ class Ticket
     #[ORM\ManyToOne(inversedBy: 'tickets')]
     private ?User $user = null;
 
+    #[ORM\ManyToOne(inversedBy: 'tickets')]
+    private ?Lottery $lottery = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class Ticket
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getLottery(): ?Lottery
+    {
+        return $this->lottery;
+    }
+
+    public function setLottery(?Lottery $lottery): static
+    {
+        $this->lottery = $lottery;
 
         return $this;
     }

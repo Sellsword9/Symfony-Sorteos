@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Lottery{% endblock %}
+
+{% block body %}
+    <h1>Create new Lottery</h1>
+
+    {{ include('lottery/_form.html.twig') }}
+
+    <a href="{{ path('app_lottery_index') }}">back to list</a>
+{% endblock %}
