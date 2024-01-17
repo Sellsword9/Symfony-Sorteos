@@ -12,6 +12,7 @@
                 <th>EndDateTime</th>
                 <th>Price</th>
                 <th>Prize</th>
+                <th>Stock</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,7 @@
                 <td>{{ lottery.endDateTime ? lottery.endDateTime|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ lottery.price }}</td>
                 <td>{{ lottery.prize }}</td>
+                <td>{{ lottery.stock }}</td>
                 {% if is_granted('ROLE_ADMIN') %}
                     <td>
                         <a href="{{ path('app_lottery_show', {'id': lottery.id}) }}">show</a>
