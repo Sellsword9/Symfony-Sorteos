@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Lottery;
 use App\Form\LotteryType;
 use App\Repository\LotteryRepository;
+use App\Repository\TicketRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,7 +24,7 @@ class LotteryController extends AbstractController
     }
 
     #[Route('/new', name: 'app_lottery_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, TicketRepository $ticketRepository): Response
     {
         $lottery = new Lottery();
         $form = $this->createForm(LotteryType::class, $lottery);
@@ -33,6 +34,8 @@ class LotteryController extends AbstractController
 
             $lottery->setCreateDateTime(new \DateTime());
             $lottery->setState(0);
+
+            $ticketRepository->createTicketsOfLottery($lottery->getStock());
 
             $entityManager->persist($lottery);
             $entityManager->flush();

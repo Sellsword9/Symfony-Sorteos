@@ -45,4 +45,5 @@ class LotteryRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
 }
