@@ -12,11 +12,10 @@ class LotteryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('createDateTime')
             ->add('endDateTime')
             ->add('price')
             ->add('prize')
-            ->add('state')
+            ->add('stock')
         ;
     }
 

@@ -30,6 +30,10 @@ class LotteryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $lottery->setCreateDateTime(new \DateTime());
+            $lottery->setState(0);
+
             $entityManager->persist($lottery);
             $entityManager->flush();
 
