@@ -78,7 +78,7 @@ class LotteryController extends AbstractController
     #[Route('/{id}', name: 'app_lottery_delete', methods: ['POST'])]
     public function delete(Request $request, Lottery $lottery, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$lottery->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $lottery->getId(), $request->request->get('_token'))) {
             $entityManager->remove($lottery);
             $entityManager->flush();
         }

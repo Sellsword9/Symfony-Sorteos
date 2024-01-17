@@ -15,8 +15,7 @@ class LotteryType extends AbstractType
             ->add('endDateTime')
             ->add('price')
             ->add('prize')
-            ->add('stock')
-        ;
+            ->add('stock');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
