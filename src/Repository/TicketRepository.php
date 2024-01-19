@@ -61,9 +61,10 @@ class TicketRepository extends ServiceEntityRepository
         }
 
         // Ahora $numeros contiene los números con ceros a la izquierda
-        $number = [];
+        $numbers = [];
         foreach ($numeros as $numero) {
-            $number[] = Ticket::create_empty($numero, $lotteryId);
+            $numbers[] = Ticket::create_empty($numero, $lotteryId);
         }
+        return $numbers;
     }
 }
