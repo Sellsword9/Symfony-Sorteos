@@ -23,11 +23,11 @@ class Ticket
     #[ORM\ManyToOne(inversedBy: 'tickets')]
     private ?Lottery $lottery = null;
 
-    public static function create_empty($number, $lotteryId): Ticket
+    public static function create_empty($number, $lottery): Ticket
     {
         $ticket = new Ticket();
         $ticket->setNumber($number);
-        $ticket->setLottery($lotteryId);
+        $ticket->setLottery($lottery);
         $ticket->setUser(null);
         return $ticket;
     }
