@@ -18,6 +18,7 @@ class LotteryController extends AbstractController
     #[Route('/', name: 'app_lottery_index', methods: ['GET'])]
     public function index(LotteryRepository $lotteryRepository): Response
     {
+
         return $this->render('lottery/index.html.twig', [
             'lotteries' => $lotteryRepository->findAll(),
         ]);
