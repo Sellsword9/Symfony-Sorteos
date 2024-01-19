@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Repository\LotteryRepository;
 use App\Repository\TicketRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -21,6 +22,15 @@ class Ticket
 
     #[ORM\ManyToOne(inversedBy: 'tickets')]
     private ?Lottery $lottery = null;
+
+    public static function create_empty($number, $lotteryId): Ticket
+    {
+        $ticket = new Ticket();
+        $ticket->setNumber($number);
+        $ticket->setLottery($lotteryId);
+        $ticket->setUser(null);
+        return $ticket;
+    }
 
     public function getId(): ?int
     {
