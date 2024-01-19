@@ -46,7 +46,7 @@ class TicketRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
-    public function createTicketsOfLottery($stock, $lotteryId)
+    public function createTicketsOfLottery($stock, $lottery)
     {
         if ($stock <= 0) {
             return;
@@ -61,9 +61,10 @@ class TicketRepository extends ServiceEntityRepository
         }
 
         // Ahora $numeros contiene los números con ceros a la izquierda
-        $number = [];
+        $numbers = [];
         foreach ($numeros as $numero) {
-            $number[] = Ticket::create_empty($numero, $lotteryId);
+            $numbers[] = Ticket::create_empty($numero, $lottery);
         }
+        return $numbers;
     }
 }

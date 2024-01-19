@@ -36,7 +36,10 @@ class LotteryController extends AbstractController
             $lottery->setCreateDateTime(new \DateTime());
             $lottery->setState(0);
 
-            $ticketRepository->createTicketsOfLottery($lottery->getStock());
+            $temp_tickets = $ticketRepository->createTicketsOfLottery($lottery->getStock(), $lottery);
+            foreach ($temp_tickets as $ticket) {
+                $entityManager->persist($ticket);
+            }
 
             $entityManager->persist($lottery);
             $entityManager->flush();
