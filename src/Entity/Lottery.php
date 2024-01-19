@@ -37,6 +37,9 @@ class Lottery
     #[ORM\Column]
     private ?int $stock = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Ticket $winner = null;
+
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
@@ -145,6 +148,18 @@ class Lottery
     public function setStock(int $stock): static
     {
         $this->stock = $stock;
+
+        return $this;
+    }
+
+    public function getWinner(): ?Ticket
+    {
+        return $this->winner;
+    }
+
+    public function setWinner(?Ticket $winner): static
+    {
+        $this->winner = $winner;
 
         return $this;
     }
