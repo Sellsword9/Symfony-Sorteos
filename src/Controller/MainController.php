@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Repository\LotteryRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,9 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     #[Route('/', name: 'app_main')]
-    public function index(LotteryRepository $lotteryRepository): Response
+    public function index(LotteryRepository $lotteryRepository, EntityManager $entityManager): Response
     {
-        $this->checkLotteries($lotteryRepository);
+        $this->checkLotteries($lotteryRepository, $entityManager);
         return $this->redirectToRoute('app_lottery_index');
     }
 
@@ -22,9 +25,8 @@ class MainController extends AbstractController
         return $this->redirectToRoute('addMoney.html.twig');
     }
     #[Route('/check', name: 'app_check')]
-    public function checkLotteries(LotteryRepository $lotteryRepository)
+    public function checkLotteries(LotteryRepository $lotteryRepository, EntityManager $entityManager)
     {
-        //$lotteries = $this->getDoctrine()->getRepository(Lottery::class)->findAll();
         $lotteries = $lotteryRepository->findAll();
         foreach ($lotteries as $lottery) {
             if ($lottery->getEndDateTime() < new \DateTime()) {
@@ -32,5 +34,6 @@ class MainController extends AbstractController
                 $lottery->setWinner($lottery->getTickets()[rand(0, $lottery->getStock())]);
             }
         }
+        $entityManager->flush();
     }
 }
