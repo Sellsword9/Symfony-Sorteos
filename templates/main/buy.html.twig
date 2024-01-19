@@ -1,2 +1,18 @@
 <h1>Hello buyer</h1>
-<p>{{lottery.stock}}</p>
+<table class="table">
+        <tbody>
+            <tr>
+                <th>Price</th>
+                <td>{{ lottery.price }}</td>
+            </tr>
+            <tr>
+                <th>Prize</th>
+                <td>{{ lottery.prize }}</td>
+            </tr>
+        </tbody>
+    </table>
+<p>Stock: {{lottery.stock}}</p>
+
+{% for ticket in lottery.getTickets %}
+  Numero: {{ticket.number}} <a href="{{ticket.id}}">Comprar</a><br>
+{% endfor %}
