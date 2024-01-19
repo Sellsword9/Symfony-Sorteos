@@ -18,7 +18,6 @@ class LotteryController extends AbstractController
     #[Route('/', name: 'app_lottery_index', methods: ['GET'])]
     public function index(LotteryRepository $lotteryRepository): Response
     {
-
         return $this->render('lottery/index.html.twig', [
             'lotteries' => $lotteryRepository->findAll(),
         ]);
@@ -58,6 +57,16 @@ class LotteryController extends AbstractController
     {
         return $this->render('lottery/show.html.twig', [
             'lottery' => $lottery,
+        ]);
+    }
+
+    #[Route('/comprar/{id}', name: 'app_buy')]
+    public function view_numeros(?Lottery $lottery)
+    {
+
+        return $this->render('main/buy.html.twig', [
+            'controller_name' => 'MainController',
+            'lottery' => $lottery
         ]);
     }
 

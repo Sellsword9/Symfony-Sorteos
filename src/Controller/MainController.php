@@ -18,11 +18,6 @@ class MainController extends AbstractController
         return $this->redirectToRoute('app_lottery_index');
     }
 
-    #[Route('/asasdasda', name: 'app_main_add_money')]
-    public function addMoney(): Response
-    {
-        return $this->redirectToRoute('addMoney.html.twig');
-    }
     #[Route('/check', name: 'app_check')]
     public function checkLotteries(LotteryRepository $lotteryRepository, EntityManager $entityManager)
     {

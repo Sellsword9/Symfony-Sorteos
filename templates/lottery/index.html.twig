@@ -14,6 +14,7 @@
                 <th>Price</th>
                 <th>Prize</th>
                 <th>Stock</th>
+                <th>Comprar<th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +25,7 @@
                 <td>{{ lottery.price }}</td>
                 <td>{{ lottery.prize }}</td>
                 <td>{{ lottery.stock }}</td>
+                <td> <a href="./comprar/{{lottery.id}}">Comprar números</a></td>
                 {% if is_granted('ROLE_ADMIN') %}
                     <td>
                         <a href="{{ path('app_lottery_show', {'id': lottery.id}) }}">show</a>
