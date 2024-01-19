@@ -3,47 +3,43 @@
 {% block title %}Loterias abiertas{% endblock %}
 
 {% block body %}
-    {% if  %}
     
-        <h1>Loterias abiertas</h1>
+    <h1>Loterias abiertas</h1>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>CreateDateTime</th>
-                    <th>EndDateTime</th>
-                    <th>Price</th>
-                    <th>Prize</th>
-                    <th>Stock</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for lottery in lotteries %}
-                <tr>
-                    <td>{{ lottery.createDateTime ? lottery.createDateTime|date('Y-m-d H:i:s') : '' }}</td>
-                    <td>{{ lottery.endDateTime ? lottery.endDateTime|date('Y-m-d H:i:s') : '' }}</td>
-                    <td>{{ lottery.price }}</td>
-                    <td>{{ lottery.prize }}</td>
-                    <td>{{ lottery.stock }}</td>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <td>
-                            <a href="{{ path('app_lottery_show', {'id': lottery.id}) }}">show</a>
-                            <a href="{{ path('app_lottery_edit', {'id': lottery.id}) }}">edit</a>
-                        </td>
-                    {% endif %}
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="7">no records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-        {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('app_lottery_new') }}">Create new</a>
-        {% endif %}
-    {% else %}
-    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>CreateDateTime</th>
+                <th>EndDateTime</th>
+                <th>Price</th>
+                <th>Prize</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lottery in lotteries %}
+            <tr>
+                <td>{{ lottery.createDateTime ? lottery.createDateTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ lottery.endDateTime ? lottery.endDateTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ lottery.price }}</td>
+                <td>{{ lottery.prize }}</td>
+                <td>{{ lottery.stock }}</td>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <td>
+                        <a href="{{ path('app_lottery_show', {'id': lottery.id}) }}">show</a>
+                        <a href="{{ path('app_lottery_edit', {'id': lottery.id}) }}">edit</a>
+                    </td>
+                {% endif %}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_lottery_new') }}">Create new</a>
     {% endif %}
 
     
