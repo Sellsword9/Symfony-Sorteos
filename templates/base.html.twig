@@ -13,7 +13,7 @@
     </head>
     <body>
 
-    <h1>Mi juego de cartas</h1>
+    <h1>Ludopatía Descontrolada</h1>
 
     {% if app.user %}
         Hola {{app.user.username}}<br>
@@ -22,6 +22,7 @@
         <a href="/logout">Logout</a><br>
     {% else %}
         <a href="/login">Login</a><br>
+        <a href="/register">Registrar</a><br>
     {% endif %}
 
     {% if is_granted('ROLE_ADMIN') %}
