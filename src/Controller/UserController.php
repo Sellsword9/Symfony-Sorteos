@@ -58,8 +58,11 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $money = $form->get('money')->getData();
+            $user->setMoney( $user->getMoney() + $money);
+            
             $entityManager->flush();
-
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -112,7 +115,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $money = $form->get('money')->getData();
-            $user->setMoney($money);
+            $user->setMoney( $user->getMoney() + $money);
 
             $entityManager->flush();
 

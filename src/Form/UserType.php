@@ -15,6 +15,7 @@ class UserType extends AbstractType
         $builder
             ->add('money', NumberType::class, [
                 'label' => 'Cantidad de Dinero',
+                'mapped' => false,
             ])
         ;
     }
