@@ -18,12 +18,11 @@ class MainController extends AbstractController
         return $this->redirectToRoute('app_lottery_index');
     }
 
-    #[Route('/check', name: 'app_check')]
     public function checkLotteries(LotteryRepository $lotteryRepository, EntityManager $entityManager)
     {
         $lotteries = $lotteryRepository->findAll();
         foreach ($lotteries as $lottery) {
-            if ($lottery->getEndDateTime() < new \DateTime()) {
+            if ($lottery->getEndDateTime() < new \DateTime() && $lottery->getState() == 0) {
                 $lottery->setState(1);
                 $lottery->setWinner($lottery->getTickets()[rand(0, $lottery->getStock())]);
             }
