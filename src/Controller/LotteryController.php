@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Lottery;
+use App\Entity\Ticket;
 use App\Form\LotteryType;
 use App\Repository\LotteryRepository;
 use App\Repository\TicketRepository;
@@ -59,19 +60,20 @@ class LotteryController extends AbstractController
             'lottery' => $lottery,
         ]);
     }
-
-    #[Route('/comprar/{id}', name: 'app_buy')]
-    public function view_numeros(?Lottery $lottery)
+    
+    #[Route('/comprar/{lottery}/{ticket}', name: 'app_buy_ticket')]
+    public function buy_numeros(?Lottery $lottery, Ticket $ticket)
     {
-
+        // $ticket->setUser();
         return $this->render('main/buy.html.twig', [
             'controller_name' => 'MainController',
-            'lottery' => $lottery
+            'lottery' => $lottery,
+            'ticket' => $ticket
         ]);
     }
-
-    #[Route('/comprar/{id}/{id}', name: 'app_buy')]
-    public function buy_numeros(?Lottery $lottery)
+    
+    #[Route('/comprar/{lottery}', name: 'app_buy')]
+    public function view_numeros(?Lottery $lottery)
     {
 
         return $this->render('main/buy.html.twig', [
