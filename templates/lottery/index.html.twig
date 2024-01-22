@@ -5,8 +5,8 @@
 {% block body %}
     
     <h1>Loterias abiertas</h1>
-
-    <table class="table">
+    {% if app.user %}
+        <table class="table">
         <thead>
             <tr>
                 <th>CreateDateTime</th>
@@ -18,26 +18,27 @@
             </tr>
         </thead>
         <tbody>
-        {% for lottery in lotteries %}
-            <tr>
-                <td>{{ lottery.createDateTime ? lottery.createDateTime|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ lottery.endDateTime ? lottery.endDateTime|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ lottery.price }}</td>
-                <td>{{ lottery.prize }}</td>
-                <td>{{ lottery.stock }}</td>
-                <td> <a href="./comprar/{{lottery.id}}">Comprar números</a></td>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <td>
-                        <a href="{{ path('app_lottery_show', {'id': lottery.id}) }}">show</a>
-                        <a href="{{ path('app_lottery_edit', {'id': lottery.id}) }}">edit</a>
-                    </td>
-                {% endif %}
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
+            {% for lottery in lotteries %}
+                <tr>
+                    <td>{{ lottery.createDateTime ? lottery.createDateTime|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ lottery.endDateTime ? lottery.endDateTime|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ lottery.price }}</td>
+                    <td>{{ lottery.prize }}</td>
+                    <td>{{ lottery.stock }}</td>
+                    <td> <a href="./comprar/{{lottery.id}}">Comprar números</a></td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <td>
+                            <a href="{{ path('app_lottery_show', {'id': lottery.id}) }}">show</a>
+                            <a href="{{ path('app_lottery_edit', {'id': lottery.id}) }}">edit</a>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">no records found</td>
+                </tr>
+            {% endfor %}
+    {% endif %}
         </tbody>
     </table>
     {% if is_granted('ROLE_ADMIN') %}

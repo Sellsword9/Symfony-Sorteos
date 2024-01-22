@@ -70,6 +70,16 @@ class LotteryController extends AbstractController
         ]);
     }
 
+    #[Route('/comprar/{id}/{id}', name: 'app_buy')]
+    public function buy_numeros(?Lottery $lottery)
+    {
+
+        return $this->render('main/buy.html.twig', [
+            'controller_name' => 'MainController',
+            'lottery' => $lottery
+        ]);
+    }
+
     #[Route('/{id}/edit', name: 'app_lottery_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Lottery $lottery, EntityManagerInterface $entityManager): Response
     {

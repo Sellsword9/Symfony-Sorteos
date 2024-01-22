@@ -14,5 +14,5 @@
 <p>Stock: {{lottery.stock}}</p>
 
 {% for ticket in lottery.getTickets %}
-  Numero: {{ticket.number}} <a href="{{ticket.id}}">Comprar</a><br>
+  Numero: {{ticket.number}} <a href="{{lottery.id}}/{{ticket.id}}">Comprar</a><br>
 {% endfor %}
