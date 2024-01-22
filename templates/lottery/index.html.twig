@@ -19,7 +19,6 @@
             </tr>
         </thead>
         <tbody>
-<<<<<<< HEAD
             {% for lottery in lotteries %}
                 <tr>
                     <td>{{ lottery.createDateTime ? lottery.createDateTime|date('Y-m-d H:i:s') : '' }}</td>
@@ -41,31 +40,6 @@
                 </tr>
             {% endfor %}
     {% endif %}
-=======
-        {% for lottery in lotteries %}
-            {% if (lottery.state != 4) %}
-                <tr>
-                <td>{{ lottery.createDateTime ? lottery.createDateTime|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ lottery.endDateTime ? lottery.endDateTime|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ lottery.price }}</td>
-                <td>{{ lottery.prize }}</td>
-                <td>{{ lottery.stock }}</td>
-                <td> <a href="./comprar/{{lottery.id}}">Comprar números</a></td>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <td>
-                        <a href="{{ path('app_lottery_show', {'id': lottery.id}) }}">show</a>
-                        <a href="{{ path('app_lottery_edit', {'id': lottery.id}) }}">edit</a>
-                    </td>
-                {% endif %}
-                <td> {{lottery.winner ? lottery.winner.number : 'Sorteo no realizado'}}</td>
-            </tr>
-            {% endif %}
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
->>>>>>> abcf602 (Añadida restriccion y añadido ganador a la vista)
         </tbody>
     </table>
     {% if is_granted('ROLE_ADMIN') %}
