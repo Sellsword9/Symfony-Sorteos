@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\LotteryRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface as EntityManager;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,12 +21,11 @@ class MainController extends AbstractController
 
     public function checkLotteries(LotteryRepository $lotteryRepository, EntityManager $entityManager)
     {
-        $lotteries = $lotteryRepository->findAll();
+        $lotteries = $lotteryRepository->findFinished();
+        //dd($lotteries);
         foreach ($lotteries as $lottery) {
-            if ($lottery->getEndDateTime() < new \DateTime() && $lottery->getState() == 0) {
-                $lottery->setState(1);
-                $lottery->setWinner($lottery->getTickets()[rand(0, $lottery->getStock())]);
-            }
+            $lottery->setState(1);
+            $lottery->setWinner($lottery->getTickets()[rand(0, $lottery->getStock())]);
         }
         $entityManager->flush();
     }

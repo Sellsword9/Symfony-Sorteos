@@ -20,9 +20,10 @@
         </thead>
         <tbody>
             {% for lottery in lotteries %}
+                {% if lottery.state != 4 %}
                 <tr>
-                    <td>{{ lottery.createDateTime ? lottery.createDateTime|date('Y-m-d H:i:s') : '' }}</td>
-                    <td>{{ lottery.endDateTime ? lottery.endDateTime|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ lottery.createDateTime ? lottery.createDateTime|date('Y-m-d') : '' }}</td>
+                    <td>{{ lottery.endDateTime ? lottery.endDateTime|date('Y-m-d') : '' }}</td>
                     <td>{{ lottery.price }}</td>
                     <td>{{ lottery.prize }}</td>
                     <td>{{ lottery.stock }}</td>
@@ -33,7 +34,9 @@
                             <a href="{{ path('app_lottery_edit', {'id': lottery.id}) }}">edit</a>
                         </td>
                     {% endif %}
+                    <td>{{ lottery.winner ? lottery.winner.number : 'Sorteo no realizado' }}</td>
                 </tr>
+                {% endif %}
             {% else %}
                 <tr>
                     <td colspan="7">no records found</td>
