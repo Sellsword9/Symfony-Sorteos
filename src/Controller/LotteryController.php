@@ -62,9 +62,12 @@ class LotteryController extends AbstractController
     }
     
     #[Route('/comprar/{lottery}/{ticket}', name: 'app_buy_ticket')]
-    public function buy_numeros(?Lottery $lottery, Ticket $ticket)
+    public function buy_numeros(?Lottery $lottery, Ticket $ticket, EntityManagerInterface $entityManager)
     {
-        // $ticket->setUser();
+        $ticket->setUser($this->getUser());
+
+        $entityManager->flush();
+
         return $this->render('main/buy.html.twig', [
             'controller_name' => 'MainController',
             'lottery' => $lottery,

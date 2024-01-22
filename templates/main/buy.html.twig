@@ -14,5 +14,7 @@
 <p>Stock: {{lottery.stock}}</p>
 
 {% for ticket in lottery.getTickets %}
-  Numero: {{ticket.number}} <a href="{{lottery.id}}/{{ticket.id}}">Comprar</a><br>
+    {% if not ticket.user %}
+        Numero: {{ticket.number}} <a href="/lottery/comprar/{{lottery.id}}/{{ticket.id}}">Comprar</a><br>
+    {% endif %}
 {% endfor %}
