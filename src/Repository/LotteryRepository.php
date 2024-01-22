@@ -23,7 +23,7 @@ class LotteryRepository extends ServiceEntityRepository
     public function findFinished(): array
     {
         return $this->createQueryBuilder('l')
-            ->setParameter('val', new \DateTime())
+            ->setParameter('val', (new \DateTime())->add(new \DateInterval('PT1H')))
             ->andWhere('l.endDateTime < :val and l.state = 0')
             ->getQuery()
             ->getResult();

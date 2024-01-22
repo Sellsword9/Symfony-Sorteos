@@ -22,8 +22,8 @@
             {% for lottery in lotteries %}
                 {% if lottery.state != 4 %}
                 <tr>
-                    <td>{{ lottery.createDateTime ? lottery.createDateTime|date('Y-m-d') : '' }}</td>
-                    <td>{{ lottery.endDateTime ? lottery.endDateTime|date('Y-m-d') : '' }}</td>
+                    <td>{{ lottery.createDateTime ? lottery.createDateTime|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ lottery.endDateTime ? lottery.endDateTime|date('Y-m-d H:i:s') : '' }}</td>
                     <td>{{ lottery.price }}</td>
                     <td>{{ lottery.prize }}</td>
                     <td>{{ lottery.stock }}</td>
